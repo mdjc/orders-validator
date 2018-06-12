@@ -21,14 +21,15 @@ A .csv file path containing the list of orders.
  - Time zone support is out of scope
  - Malformed records will be ignored and logged as errors
  - Well-formed records will be processed as valid or invalid
- #### A well-formed record 
+
+#### A well-formed record 
+  - Expected fields order: Time stamp,broker,sequence id,type,Symbol,Quantity,Price,Side
   - Every field will be separated by a comma
+  - Timestamp will be formatted as follows MM/d/yyyy HH:mm:ss. A 24 hours format is being used
   - String fields may be empty: broker, type, symbol, side
   - Numeric fields like quantity, price, sequence will be valid numbers
-  - Timestamp will be formatted as follows MM/d/yyyy HH:mm:ss. A 24 hours format is being used
-  - expected fields order: Time stamp,broker,sequence id,type,Symbol,Quantity,Price,Side
   
-  Sample csv input file:
+#### Sample csv input file:
   ```
   Time stamp,broker,sequence id,type,Symbol,Quantity,Price,Side
   10/5/2017 10:00:00,Fidelity,1,2,BARK,100,1.195,Buy
@@ -49,6 +50,8 @@ A future version can used a library for that purpose.
 1) Clone this repository on your local machine
 2) Go to the root of the project and use maven to package the project from the command line: 
   mvn package
-3) Execute the jar from the command line passing the .csv path as a parameter. 
-For example:
+3) Execute the jar from the command line passing the .csv path as a parameter. For example:
+  
+  ```
   java -jar orders-validator-0.0.1-SNAPSHOT-jar-with-dependencies.jar C:\Users\Mirna\Desktop\trades.csv
+  ```
