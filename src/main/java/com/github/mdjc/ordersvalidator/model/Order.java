@@ -6,14 +6,14 @@ public class Order {
 	private final LocalDateTime timeStamp;
 	private final String broker;
 	private final Integer sequence;
-	private final Character type;
+	private final String type;
 	private final String symbol;
 	private final Integer quantity;
 	private final Double price;
 	private final String side;
 
-	public Order(LocalDateTime timeStamp, String broker, Integer sequence, Character type, String symbol,
-			Integer quantity, Double price, String side) {
+	public Order(LocalDateTime timeStamp, String broker, Integer sequence, String type, String symbol, Integer quantity,
+			Double price, String side) {
 		this.timeStamp = timeStamp;
 		this.broker = broker;
 		this.sequence = sequence;
@@ -36,7 +36,7 @@ public class Order {
 		return sequence;
 	}
 
-	public Character getType() {
+	public String getType() {
 		return type;
 	}
 
@@ -57,8 +57,14 @@ public class Order {
 	}
 
 	public boolean hasRequiredFields() {
-		return timeStamp != null && broker != null && !broker.isEmpty() && sequence != null && type != null
-				&& symbol != null && quantity != null && price != null && side != null;
+		return isNonNull(timeStamp)
+				&& isNonNullOrEmpty(broker)
+				&& isNonNull(sequence)
+				&& isNonNullOrEmpty(type)
+				&& isNonNullOrEmpty(symbol) 
+				&& isNonNull(quantity) 
+				&& isNonNull(price) 
+				&& isNonNullOrEmpty(side);
 	}
 
 	@Override
@@ -67,5 +73,13 @@ public class Order {
 				"timeStamp = %s, broker = %s, sequence = %d, type = %s, symbol = %s, quantity = %d, price = %f, side = %s",
 				timeStamp, broker, sequence, type, symbol, quantity, price, side);
 
+	}
+
+	private static boolean isNonNullOrEmpty(String str) {
+		return isNonNull(str) && !str.isEmpty();
+	}
+
+	private static boolean isNonNull(Object obj) {
+		return obj != null;
 	}
 }

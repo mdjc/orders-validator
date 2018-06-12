@@ -1,5 +1,5 @@
 # Orders Validator
-Determines which orders are valid or invalid, according to a set of rules.
+This is a Java console application that determines which orders are valid or invalid, according to a set of rules.
 
 ## Input
 A .csv file path containing the list of orders.
@@ -22,10 +22,11 @@ A .csv file path containing the list of orders.
  - Malformed records will be ignored and logged as errors
  - Well-formed records will be processed as valid or invalid
  #### A well-formed record 
-  - Includes seven 7 commas
-  - Any field may be null
+  - Every field will be separated by a comma
+  - String fields may be empty: broker, type, symbol, side
   - Numeric fields like quantity, price, sequence will be valid numbers
   - Timestamp will be formatted as follows MM/d/yyyy HH:mm:ss. A 24 hours format is being used
+  - expected fields order: Time stamp,broker,sequence id,type,Symbol,Quantity,Price,Side
   
   Sample csv input file:
   ```
@@ -35,11 +36,11 @@ A .csv file path containing the list of orders.
   10/5/2017 10:00:02,AXA Advisors,1,K,BRIC,5000,30.7,Sell
   ```
 
-### 2) trades_id = sequence = sequence_id
-### 3) Valid symbols are hard-coded. 
+### 2) Valid symbols are hard-coded. 
 This was for simplicity. In future versions, these symbols may be configured as an additional parameter.
 
-### 4) Parsing the csv file is done manually. A future version can used a library for that purpose.
+### 3) Parsing the csv file is manually done. 
+A future version can used a library for that purpose.
 
 ## Running this app
 **Prerequisites** : maven and java 8
