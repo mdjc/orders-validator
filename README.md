@@ -5,8 +5,8 @@ This is a Java console application that determines which orders are valid or inv
 A .csv file path containing the list of orders.
 
 ## Output
-- accepted-broker-seq.txt: List of the broker and sequence id of accepted orders
-- rejected-broker-seq.txt: List of the broker and sequence id of rejected orders
+- accepted-broker-seq.csv: List of the broker and sequence id of accepted orders
+- rejected-broker-seq.csv: List of the broker and sequence id of rejected orders
 - accepted-orders.txt: List of accepted orders
 - rejected-orders.txt: List of rejected orders
 
