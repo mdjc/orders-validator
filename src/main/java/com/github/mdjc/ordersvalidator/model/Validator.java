@@ -24,7 +24,10 @@ public class Validator {
 			return false;
 
 		boolean valid = hasValidSymbol(order) && !brokerExceedsOrdersLimit(order) && isBrokerNewSequence(order);
-		cacheBrokerStats(order);
+		
+		if (valid) 
+			cacheBrokerStats(order);
+		
 		return valid;
 	}
 
@@ -34,7 +37,9 @@ public class Validator {
 
 	private boolean brokerExceedsOrdersLimit(Order order) {
 		SimpleEntry<LocalDateTime, Integer> lastMinuteCountEntry = brokerLatestMinuteCountMap.get(order.getBroker());
-		return lastMinuteCountEntry != null && lastMinuteCountEntry.getValue() >= brokerOrdersPerMinute;
+
+		return lastMinuteCountEntry != null && lastMinuteCountEntry.getKey().equals(order.getTimeStamp().withSecond(0))
+				&& lastMinuteCountEntry.getValue() >= brokerOrdersPerMinute;
 	}
 
 	private boolean isBrokerNewSequence(Order order) {
